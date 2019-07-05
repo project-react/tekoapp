@@ -19,5 +19,4 @@ class Logout(Resource):
     @ns.expect(parser)
     def get(self):
         token = request.headers.get('Authorization')
-        print(token)
-        return "nguyenduychien"
+        return services.logout.check_token_from_logout_request(token)
