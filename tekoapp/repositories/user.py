@@ -16,6 +16,14 @@ def find_user_by_username(username=""):
     ).first()
     return user or None
 
+def find_user_by_username_and_email(username="", email=""):
+    user = models.User.query.filter(
+        models.User.username == username 
+        and
+        models.User.email == email
+    ).first()
+    return user or None
+
 def find_one_by_email_or_username_in_user(email="", username=""):
     user_in_signup_request = models.Signup_Request.query.filter(
         or_(
