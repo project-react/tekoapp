@@ -13,4 +13,4 @@ def init_app(app, **kwargs):
 
 from .signup import Signup_Request, SignupSchema
 from .user import User, UserSchema
-from .user_token import User_Token
+from .usertoken import User_Token

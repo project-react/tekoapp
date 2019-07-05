@@ -23,3 +23,13 @@ def delete_one_by_email_or_username_in_signup_request(user):
     models.db.session.delete(user)
     models.db.session.commit()
 
+def save_user_to_user(username="", email="", password=""):
+    data = {
+        'username' : username, 
+        'email' : email, 
+        'password_hash' : password, 
+    }
+    user = models.User(**data)
+    models.db.session.add(user)
+    models.db.session.commit()
+    return user or None

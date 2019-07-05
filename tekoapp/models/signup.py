@@ -10,6 +10,7 @@ class Signup_Request(db.Model):
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
+            
         self.expired_time = (datetime.now() + timedelta(minutes=30))
         self.create_token()
 

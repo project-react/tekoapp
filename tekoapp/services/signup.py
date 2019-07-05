@@ -3,16 +3,15 @@ import jwt
 import config
 from datetime import datetime
 
-from tekoapp import models
-from tekoapp import repositories, helpers
+from tekoapp import models, repositories, helpers
 from tekoapp.extensions import exceptions
 
 
 def create_user_to_signup_request(username, email, password, **kwargs):
     if (
             username and len(username) < 50 and
-            email and re.match(r"[^@]+@[^\.]+\..+", email) and
-            password and re.match(r"^[A-Za-z0-9]{6,}$", password)
+            email and re.match(r"[^@]+@[^\.]+\..+", email) 
+            # and password and re.match(r"^[A-Za-z0-9]{6,}$", password)
     ):
 
         existed_user = repositories.user.find_one_by_email_or_username_in_user(
@@ -43,20 +42,29 @@ def create_user_to_signup_request(username, email, password, **kwargs):
 
 
 def verify(token_string):
-    # token_data = helpers.token.decode_token(token_string)
+
     token_data = jwt.decode(token_string, config.FLASK_APP_SECRET_KEY)
+
     if not token_data:
         raise exceptions.BadRequestException("Invalid token!")
     else:
         username = token_data["username"]
         user = repositories.signup.find_one_by_email_or_username_in_signup_request(username=username)
         if user:
-            # delete user from signup_request
             repositories.signup.delete_one_by_email_or_username_in_signup_request(user)
-            
             now = datetime.timestamp(datetime.now())
             expired = datetime.timestamp(user.expired_time)
             if expired - now >= 0:
-                return {"message":"success"}
+                #function add info to user and delete Signup_Request
+                result = repositories.signup.save_user_to_user(
+                    username=user.username,
+                    email=user.email,
+                    password=user.password_hash,
+                )
+                if result is None:
+                    raise exceptions.UnAuthorizedException(message="database error")
+                else:
+                    return { 'message' : 'success' }
+
             raise exceptions.UnAuthorizedException(message="expired token")
         raise exceptions.NotFoundException(message="not found user")

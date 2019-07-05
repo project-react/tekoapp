@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask_restplus import Api
 from .signup import ns as signup_ns
 from .login import ns as login_ns
+from .logout import ns as logout_ns
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
@@ -21,4 +22,5 @@ def init_app(app, **kwargs):
     """
     api.add_namespace(signup_ns)
     api.add_namespace(login_ns)
+    api.add_namespace(logout_ns)
     app.register_blueprint(api_bp)

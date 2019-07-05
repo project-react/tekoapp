@@ -10,6 +10,11 @@ def save_user_to_user(**kwargs):
     # models.db.session.commit()
     return None
 
+def find_user_by_username(username=""):
+    user = models.User.query.filter(
+        models.User.username == username
+    ).first()
+    return user or None
 
 def find_one_by_email_or_username_in_user(email="", username=""):
     user_in_signup_request = models.Signup_Request.query.filter(

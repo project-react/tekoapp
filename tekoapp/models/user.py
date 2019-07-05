@@ -10,19 +10,17 @@ class User(db.Model):
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
-        self.updated_at = datetime.now()
-    
-    __tablename__ = 'User'
 
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(191), nullable=False, unique=True)
     email = db.Column(db.String(191), nullable=False, unique=True)
-    password = db.Column(db.Text(), nullable=False)
+    password_hash = db.Column(db.Text(), nullable=False)
     is_active = db.Column(db.Boolean, default=False)
     last_login = db.Column(db.TIMESTAMP, default = datetime.datetime.now)
     is_admin = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.TIMESTAMP)
-    updated_at = db.Column(db.TIMESTAMP)
+    created_at = db.Column(db.TIMESTAMP, default = datetime.datetime.now)
+    updated_at = db.Column(db.TIMESTAMP, default = datetime.datetime.now)
 
     @property
     def password(self):
@@ -51,17 +49,13 @@ class User(db.Model):
         }
 
 class UserSchema:
-    user = {
-        'email': fields.String(required=True, description='user email address'),
+    user_create_req = {
         'username': fields.String(required=True, description='user username'),
+        'email': fields.String(required=True, description='user username'),
+        'password': fields.String(required=True, description='user password'),
     }
-    user_create_req = user.copy()
     user_create_res = {
         'token': fields.String(required=True, description='token user'),
     }
-    user_create_req.pop('id', None)
-    user_create_req.update({
-        'password': fields.String(required=True, description='user password'),
-    })
-
+    
 
