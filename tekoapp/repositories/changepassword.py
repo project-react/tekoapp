@@ -1,9 +1,9 @@
 from tekoapp import models
 
+
+
 def update_password(newpassword, user):
-    newpassword_hash =  models.bcrypt.generate_password_hash(
-        newpassword).decode('utf-8')
-    if newpassword_hash == user.password_hash:
+    if user.check_password(newpassword):
         return False
     else:
         user.password = newpassword

@@ -28,8 +28,20 @@ def save_user_to_user(username="", email="", password=""):
         'username' : username, 
         'email' : email, 
         'password_hash' : password, 
+        'is_active': 1
     }
     user = models.User(**data)
     models.db.session.add(user)
+    models.db.session.commit()
+    return user or None
+
+def find_by_token_in_signup_request(token):
+    return models.Signup_Request.query.filter(
+        models.Signup_Request.user_token_confirm == token
+    ).first() or None
+
+def delete_by_token_in_signup_request(token):
+    user = find_by_token_in_signup_request(token)
+    models.db.session.delete(user)
     models.db.session.commit()
     return user or None

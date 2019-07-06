@@ -4,7 +4,6 @@ from tekoapp import models
 
 
 def save_user_to_user(**kwargs):
-    # print("ok ok")
     # user = models.Signup_Request(**kwargs)
     # models.db.session.add(user)
     # models.db.session.commit()

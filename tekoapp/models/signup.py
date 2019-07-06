@@ -46,7 +46,9 @@ class SignupSchema:
         'username': fields.String(required=True, description='user username'),
         'password': fields.String(required=True, description='user password')
     }
+    
     signup_request_res = {
         'email': fields.String(required=True, description='user email address'),
         'username': fields.String(required=True, description='user username'),
+        'expired_time': fields.String(required=True, description='expired time'),
     }

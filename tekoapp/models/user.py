@@ -51,7 +51,6 @@ class User(db.Model):
 class UserSchema:
     user_create_req = {
         'username': fields.String(required=True, description='user username'),
-        'email': fields.String(required=True, description='user username'),
         'password': fields.String(required=True, description='user password'),
     }
     user_create_res = {

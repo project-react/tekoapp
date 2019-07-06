@@ -7,7 +7,7 @@ class User_Token(db.Model):
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
-        self.expired_time = (datetime.now() + timedelta(minutes=1))
+        self.expired_time = (datetime.now() + timedelta(minutes=30))
         self.create_token()
     
     __tablename__ = 'user_token'
@@ -27,4 +27,8 @@ class User_Token(db.Model):
         self.token = token_string
         print(self.token)
 
-    
+class TokenSchema:
+    token_create_res = {
+        'expired_time': fields.String(required=True, description='expired time'),
+        'token': fields.String(required=True, description='string token'),
+    }

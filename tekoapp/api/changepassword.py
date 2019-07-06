@@ -10,7 +10,8 @@ _changepassword_req = ns.model(
     {
         'username' : fields.String(required=True, description='user username'),
         'email' : fields.String(required=True, description='user email'),
-        'newpassword' : fields.String(required=True, description='user new password')
+        'password' : fields.String(required=True, description='your password'),
+        'newpassword' : fields.String(required=True, description='new password')
     }
 )
 

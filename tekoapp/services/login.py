@@ -1,25 +1,31 @@
 import re
 import jwt
 
-from tekoapp import models, repositories
+from tekoapp import models, repositories, helpers
 from tekoapp.extensions import exceptions
 
 def check_info_from_login_request(username, password, **kwargs):
     if(
-        len(username) > 5 
+        username and helpers.Username(username).is_valid()
+        and
+        password and helpers.Password(password).is_valid()
     ):
         user = repositories.user.find_user_by_username(username)
         if user is None:
-            raise exceptions.BadRequestException("Not found user")
+            raise exceptions.UnAuthorizedException(message="Not found user")
         else:
             if(user.check_password(password)):
                 # function add tocken 
-                token = repositories.usertoken.create_token_by_user(user)
-                if token is None:
-                    raise exceptions.BadRequestException("Don't insert token") 
+                user_token = repositories.usertoken.create_token_by_user(user)
+                if user_token is None:
+                    raise exceptions.UnAuthorizedException(message="Don't insert token")
                 else:
-                    return models.User.check_password(user,password)
+                    timestr = user_token.expired_time.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+                    return {
+                        'token' : user_token.token,
+                        'expired_time' : timestr, 
+                    }
             else:
                 raise exceptions.BadRequestException("Password invalid") 
     else:
-        raise exceptions.BadRequestException("Invalid user data specified!")
+        raise exceptions.BadRequestException("Invalid data!")

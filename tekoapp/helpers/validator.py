@@ -22,6 +22,9 @@ class Username:
         else:
             return False
 
+    def is_valid(self):
+        return self.test_length() and self.test_has_space() and self.test_charater()
+
 class Email:
     value = ''
     def __init__(self, value):
@@ -33,6 +36,9 @@ class Email:
             return True
         else:
             return False
+
+    def is_valid(self):
+        return self.test_format()
 
 class Password:
     value = ''
@@ -48,3 +54,6 @@ class Password:
             return True
         else:
             return False
+
+    def is_valid(self):
+        return self.test_length() and self.test_format()
