@@ -1,0 +1,1 @@
+from .validator import Username, Email, Password

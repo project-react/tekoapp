@@ -24,7 +24,7 @@ class Register(Resource):
     def post(self):
         data = request.json or request.args
         user = services.signup.create_user_to_signup_request(**data)
-        return user
+        return {"user":"sdgsg"}
 
 @ns.route('/verify/<string:token>')
 class Verify(Resource):

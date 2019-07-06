@@ -1,7 +1,7 @@
-import datetime
 import enum
 import logging
 from flask_restplus import fields
+from datetime import datetime, timedelta
 
 
 from tekoapp.models import db, bcrypt
@@ -17,10 +17,10 @@ class User(db.Model):
     email = db.Column(db.String(191), nullable=False, unique=True)
     password_hash = db.Column(db.Text(), nullable=False)
     is_active = db.Column(db.Boolean, default=False)
-    last_login = db.Column(db.TIMESTAMP, default = datetime.datetime.now)
+    last_login = db.Column(db.TIMESTAMP, default = datetime.now())
     is_admin = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.TIMESTAMP, default = datetime.datetime.now)
-    updated_at = db.Column(db.TIMESTAMP, default = datetime.datetime.now)
+    created_at = db.Column(db.TIMESTAMP, default = datetime.now())
+    updated_at = db.Column(db.TIMESTAMP, default = datetime.now())
 
     @property
     def password(self):

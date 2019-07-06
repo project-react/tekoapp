@@ -20,4 +20,3 @@ def delete_token_by_tokenstring(tokenstring):
     user_token = find_usertoken_by_tokenstring(tokenstring)
     models.db.session.delete(user_token)
     models.db.session.commit()
-    return True or None

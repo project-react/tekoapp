@@ -10,7 +10,6 @@ _changepassword_req = ns.model(
     {
         'username' : fields.String(required=True, description='user username'),
         'email' : fields.String(required=True, description='user email'),
-        'password' : fields.String(required=True, description='user password'),
         'newpassword' : fields.String(required=True, description='user new password')
     }
 )
@@ -20,4 +19,4 @@ class Changepassword(Resource):
     @ns.expect(_changepassword_req, validate=True)
     def post(self):
         data = request.json or request.args
-        return "ok change"
+        return services.changepassword.check_info_and_res(**data)
