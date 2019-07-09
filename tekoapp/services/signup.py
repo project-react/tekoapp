@@ -54,7 +54,8 @@ def verify(token_string):
             raise exceptions.BadRequestException('database error')
 
     username = token_data["username"]
-    user = repositories.signup.find_one_by_email_or_username_in_signup_request(username=username)
+    print(username)
+    user = repositories.signup.find_one_by_email_or_username_in_signup_request(email="", username=username)
     if user:
         repositories.signup.delete_one_by_email_or_username_in_signup_request(user)
         now = datetime.timestamp(datetime.now())

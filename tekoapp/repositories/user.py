@@ -25,10 +25,9 @@ def find_user_by_username_and_email(username="", email=""):
 
 def find_one_by_email_or_username_in_user(email="", username=""):
     user_in_signup_request = models.Signup_Request.query.filter(
-        or_(
-            models.Signup_Request.username == username,
-            models.Signup_Request.email == email
-        )
+        models.Signup_Request.username == username
+        or
+        models.Signup_Request.email == email
     ).first()
     return None
 

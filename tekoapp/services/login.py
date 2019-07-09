@@ -3,7 +3,6 @@ import jwt
 
 from tekoapp import models, repositories, helpers
 from tekoapp.extensions import exceptions
-from datetime import datetime
 
 def check_info_from_login_request(username, password, **kwargs):
     if(
@@ -21,10 +20,10 @@ def check_info_from_login_request(username, password, **kwargs):
                 if user_token is None:
                     raise exceptions.UnAuthorizedException(message="Don't insert token")
                 else:
-                    int_time = datetime.timestamp(user_token.expired_time)
+                    timestr = user_token.expired_time.strftime("%d-%b-%Y (%H:%M:%S.%f)")
                     return {
                         'token' : user_token.token,
-                        'expired_time' : int_time, 
+                        'expired_time' : timestr, 
                     }
             else:
                 raise exceptions.BadRequestException("Password invalid") 
