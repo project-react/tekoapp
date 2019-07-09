@@ -7,9 +7,9 @@ load_dotenv(_DOT_ENV_PATH)
 ROOT_DIR = os.path.abspath(os.path.join(
     os.path.dirname(__file__)
 ))
-
 FLASK_APP_SECRET_KEY = os.getenv('SECRET_KEY')
-
+FLASK_APP_MAIL_ADRESS = os.getenv('MAIL_ADRESS')
+FLASK_APP_MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
 MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
 MYSQL_HOST = os.getenv('MYSQL_HOST')
 MYSQL_USER = os.getenv('MYSQL_USER')

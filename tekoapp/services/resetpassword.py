@@ -16,6 +16,11 @@ def check_info_form_resetpassword_and_res(username, email, **kwargs):
         else:
             #update value user in database
             newpassword = repositories.resetpassword.change_password(user)
-            return newpassword
+            content_mail = "Your Password: " + newpassword
+            check_password = repositories.sendmail.send_mail("Reset Password", content_mail, email)
+            if check_password:
+                return { 'message' : 'Reset password success. You can check mail: ' + email }
+            else:
+                raise exceptions.ForbiddenException(message="Send mail error")
     else:
         raise exceptions.BadRequestException("data invalid")

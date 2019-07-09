@@ -1,8 +1,8 @@
 import re
 import jwt
 import config
-from datetime import datetime
 
+from datetime import datetime
 from tekoapp import models, repositories, helpers
 from tekoapp.extensions import exceptions
 
@@ -37,8 +37,13 @@ def create_user_to_signup_request(username, email, password, **kwargs):
             password=password,
             **kwargs
         )
-
-        return user
+        
+        content_mail = "Thankyou for use TEKOAPP. You token: " + user.user_token_confirm
+        check_send_mail = repositories.sendmail.send_mail("Information Veriry Account.", content_mail, email)
+        if (check_send_mail):
+            return user
+        else:
+            exceptions.ForbiddenException(message="Not found email!!!")
     else:
         raise exceptions.BadRequestException("Data invalid!")
 

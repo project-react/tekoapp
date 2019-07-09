@@ -1,4 +1,4 @@
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 
 from tekoapp import models
 
@@ -17,9 +17,10 @@ def find_user_by_username(username=""):
 
 def find_user_by_username_and_email(username="", email=""):
     user = models.User.query.filter(
-        models.User.username == username 
-        and
-        models.User.email == email
+        and_(
+            models.User.username == username, 
+            models.User.email == email
+        )
     ).first()
     return user or None
 
