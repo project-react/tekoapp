@@ -8,8 +8,7 @@ ns = Namespace('changepassword', description='changepassword operator')
 _changepassword_req = ns.model(
     'changepassword_req', 
     {
-        'username' : fields.String(required=True, description='user username'),
-        'email' : fields.String(required=True, description='user email'),
+        'token' : fields.String(required=True, description='user email'),
         'password' : fields.String(required=True, description='your password'),
         'newpassword' : fields.String(required=True, description='new password')
     }

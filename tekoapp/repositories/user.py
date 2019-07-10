@@ -15,6 +15,12 @@ def find_user_by_username(username=""):
     ).first()
     return user or None
 
+def find_user_by_id(user_id):
+    user = models.User.query.filter(
+        models.User.id == user_id
+    ).first()
+    return user or None
+
 def find_user_by_username_and_email(username="", email=""):
     user = models.User.query.filter(
         and_(
