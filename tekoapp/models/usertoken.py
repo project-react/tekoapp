@@ -25,7 +25,6 @@ class User_Token(db.Model):
         }
         token_string = jwt.encode(token_data, config.FLASK_APP_SECRET_KEY)
         self.token = token_string
-        print(self.token)
 
 class TokenSchema:
     token_create_res = {

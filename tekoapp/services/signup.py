@@ -15,13 +15,10 @@ def create_user_to_signup_request(username, email, password, **kwargs):
         and
         password and helpers.Password(password).is_valid()
     ):
-    
         existed_user = repositories.user.find_one_by_email_or_username_in_user(
             email, username)
-
         existed_user_not_verify = repositories.signup.find_one_by_email_or_username_in_signup_request(
             email, username)
-
         if existed_user or existed_user_not_verify:
             raise exceptions.BadRequestException(
                 "User with username {username} "
@@ -30,7 +27,6 @@ def create_user_to_signup_request(username, email, password, **kwargs):
                     email=email
                 )
             )
-
         user = repositories.signup.save_user_to_signup_request(
             username=username,
             email=email,
@@ -59,7 +55,6 @@ def verify(token_string):
             raise exceptions.BadRequestException('database error')
 
     username = token_data["username"]
-    print(username)
     user = repositories.signup.find_one_by_email_or_username_in_signup_request(email="", username=username)
     if user:
         repositories.signup.delete_one_by_email_or_username_in_signup_request(user)
@@ -76,5 +71,4 @@ def verify(token_string):
                 raise exceptions.BadRequestException("database error")
             else:
                 return { 'message' : 'success' }
-
     raise exceptions.NotFoundException(message="not found user")

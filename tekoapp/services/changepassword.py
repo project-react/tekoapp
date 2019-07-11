@@ -10,9 +10,7 @@ def check_info_and_res(token="", password="" ,newpassword="", **kwarg):
     except jwt.ExpiredSignature:
         repositories.usertoken.delete_token_by_tokenstring(token)
         raise exceptions.UnAuthorizedException('expired token, auto logout')
-
     user_id = token_data["userid"]
-
     user = repositories.user.find_user_by_id(user_id)
     if user is None:
         raise exceptions.BadRequestException("User not exist!")
