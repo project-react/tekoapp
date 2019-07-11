@@ -1,6 +1,8 @@
 import re
 import jwt
+import config
 
+from datetime import datetime
 from tekoapp import models, repositories, helpers
 from tekoapp.extensions import exceptions
 
@@ -20,7 +22,7 @@ def check_info_from_login_request(username, password, **kwargs):
                 if user_token is None:
                     raise exceptions.UnAuthorizedException(message="Don't insert token")
                 else:
-                    timestr = user_token.expired_time.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+                    timestr =  datetime.timestamp(user_token.expired_time)
                     return {
                         'token' : user_token.token,
                         'expired_time' : timestr, 
@@ -29,3 +31,11 @@ def check_info_from_login_request(username, password, **kwargs):
                 raise exceptions.BadRequestException("Password invalid") 
     else:
         raise exceptions.BadRequestException("Invalid data!")
+
+def check_maintain_login(tokenstring=""):
+    try:
+        token_data = jwt.decode(tokenstring, config.FLASK_APP_SECRET_KEY)
+        return {"message": "still valid"}
+    except jwt.ExpiredSignature:
+        repositories.usertoken.delete_token_by_tokenstring(tokenstring)
+        raise exceptions.UnAuthorizedException('expired token, auto logout')

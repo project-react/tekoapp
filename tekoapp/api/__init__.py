@@ -5,6 +5,7 @@ from .login import ns as login_ns
 from .logout import ns as logout_ns
 from .resetpassword import ns as resetpassword_ns
 from .changepassword import ns as changepassword_ns
+from .maintainLogin import ns as maintainLogin_ns
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
@@ -27,4 +28,5 @@ def init_app(app, **kwargs):
     api.add_namespace(logout_ns)
     api.add_namespace(resetpassword_ns)
     api.add_namespace(changepassword_ns)
+    api.add_namespace(maintainLogin_ns)
     app.register_blueprint(api_bp)
