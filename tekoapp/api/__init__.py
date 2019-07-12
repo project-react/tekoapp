@@ -1,11 +1,5 @@
 from flask import Blueprint
 from flask_restplus import Api
-from .signup import ns as signup_ns
-from .login import ns as login_ns
-from .logout import ns as logout_ns
-from .resetpassword import ns as resetpassword_ns
-from .changepassword import ns as changepassword_ns
-from .maintainLogin import ns as maintainLogin_ns
 from .auth import ns as auth_ns
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
