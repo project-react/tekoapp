@@ -6,7 +6,7 @@ class Username:
         self.value = value
 
     def test_length(self):
-        return len(self.value) >= 8
+        return len(self.value) >= 6
 
     def test_has_space(self):
         result = re.search(r'[^\S+$]+', self.value)
