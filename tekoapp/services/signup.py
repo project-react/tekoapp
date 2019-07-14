@@ -1,6 +1,8 @@
 import re
 import jwt
 import config
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 from datetime import datetime
 from tekoapp import models, repositories, helpers
@@ -33,9 +35,9 @@ def create_user_to_signup_request(username, email, password, **kwargs):
             password=password,
             **kwargs
         )
-        
-        content_mail = "Thankyou for use TEKOAPP. You token: " + user.user_token_confirm
-        check_send_mail = repositories.sendmail.send_mail("Information Veriry Account.", content_mail, email)
+        content_mail = '<a href="{0}/{1}/{2}">Click here</b>'.format(config.BASE_URL, 'api/auth/register/verify',
+                                                                user.user_token_confirm)
+        check_send_mail = helpers.send_mail("Information Veriry Account.", content_mail, email)
         if (check_send_mail):
             return user
         else:

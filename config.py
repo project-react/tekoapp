@@ -15,6 +15,7 @@ MYSQL_HOST = os.getenv('MYSQL_HOST')
 MYSQL_USER = os.getenv('MYSQL_USER')
 MYSQL_PORT = os.getenv('MYSQL_PORT')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+BASE_URL = os.getenv('BASE_URL')
 
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{0}:{1}@{2}:{3}/{4}'.format(
     MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_PORT, MYSQL_DATABASE
