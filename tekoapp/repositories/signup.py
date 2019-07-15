@@ -18,7 +18,6 @@ def find_one_by_email_or_username_in_signup_request(email="", username=""):
         )
         
     ).first()
-    print(user_in_signup_request)
     return user_in_signup_request or None
 
 def delete_one_by_email_or_username_in_signup_request(user):

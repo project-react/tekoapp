@@ -17,7 +17,7 @@ def check_info_from_login_request(username, password, **kwargs):
             raise exceptions.UnAuthorizedException(message="Not found user")
         else:
             if(user.check_password(password)):
-                # function add tocken 
+                # function add token
                 user_token = repositories.usertoken.create_token_by_user(user)
                 if user_token is None:
                     raise exceptions.UnAuthorizedException(message="Don't insert token")
