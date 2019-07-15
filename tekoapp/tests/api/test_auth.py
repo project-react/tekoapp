@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 
 class UserApiTestCase(APITestCase):
     def url(self):
-        return '/api/auth/register'
+        return 'http://localhost/api/auth/register/'
 
     def method(self):
         return 'POST'
