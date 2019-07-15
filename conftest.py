@@ -1,7 +1,5 @@
 import pytest
 
-__author__ = 'Kien'
-
 
 @pytest.fixture(autouse=True)
 def app(request):
