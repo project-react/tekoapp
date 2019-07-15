@@ -2,12 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dd4cd8e-bcf6-404a-b1d6-d5bb94f56b46" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/README" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/script.py.mako" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/script.py.mako" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/a70ed4073370_.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekoapp/tests/api/test_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/tekoapp/tests/api/test_auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/activate.csh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/activate.fish" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/activate.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/activate.xsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/activate_this.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/alembic" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/chardetect" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/coverage" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/coverage-3.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/coverage3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/dotenv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/easy_install" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/easy_install-3.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/faker" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/flask" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/gunicorn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/gunicorn_paster" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/jsonschema" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/jwt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/mako-render" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/pip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/pip3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/pip3.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/py.test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/pytest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/python" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/python-config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/python3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/python3.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/bin/wheel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chien_env/include/python3.6m" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,12 +44,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tekoapp/tests/api/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="612">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tekoapp/tests/api/test_auth.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="65">
+              <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -30,13 +70,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tekoapp/tests/api/test_auth.py">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="10" selection-start-column="10" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -64,10 +101,11 @@
         <option value="$PROJECT_DIR$/tekoapp/models/signup.py" />
         <option value="$PROJECT_DIR$/tekoapp/tests/api/__init__.py" />
         <option value="$PROJECT_DIR$/tekoapp/tests/api/test_auth.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="684" />
     <option name="width" value="698" />
     <option name="height" value="735" />
@@ -78,13 +116,26 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="back-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="back-end" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -174,6 +225,9 @@
       <workItem from="1563164530687" duration="8000" />
       <workItem from="1563164568458" duration="20000" />
       <workItem from="1563165028692" duration="1540000" />
+      <workItem from="1563166967442" duration="156000" />
+      <workItem from="1563188002845" duration="2297000" />
+      <workItem from="1563199625219" duration="236000" />
     </task>
     <servers />
   </component>
@@ -183,12 +237,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6886000" />
+    <option name="totallyTimeSpent" value="9670000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26342005" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2753404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -202,7 +257,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.28401726" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.21931261" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -310,13 +365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tekoapp/models/signup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -327,10 +375,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tekoapp/tests/api/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="612">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -339,11 +394,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tekoapp/tests/api/test_auth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+        <state relative-caret-position="65">
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
         </state>
       </provider>
     </entry>
