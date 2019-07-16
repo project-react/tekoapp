@@ -13,15 +13,16 @@ _logger = logging.getLogger(__name__)
 
 email = 'fofef@simplemail.in'
 
-data_test_register = '[ ' \
-                         '{"username": "chien", "email": "duychien22@gmail.com", "password": "Nguyenduychien", "status_code": 400}, ' \
-                         '{"username": "nguyenduychien", "email": "duychien22gmail.com", "password": "Nguyenduychien1.", "status_code": 400}, ' \
-                         '{"username": "nguyenduyc/", "email": "duychien22@gmail.com", "password": "Nguyenduychien1.", "status_code": 400}, ' \
-                         '{"username": "123456789", "email": "@gmail.com", "password": "Nguyenduychien1.", "status_code": 400}, ' \
-                         '{"username": "444444444", "email": "duychien22@.", "password": "Nguyenduychien1.", "status_code": 400}, ' \
-                         '{"username": "", "email": "duychien22@gmail.com", "password": "Nguyenduychien1.", "status_code": 400}, ' \
-                         '{"username": "", "email": "", "password": "", "status_code": 400},' \
-                         '{"username": "nguyenduychien", "email": "duychien226@gmail.com", "password": "Nguyenduychien1.", "status_code": 200}]'
+data_test_register = \
+    '[ ' \
+         '{"username": "chien", "email": "duychien22@gmail.com", "password": "Nguyenduychien", "status_code": 400}, ' \
+         '{"username": "nguyenduychien", "email": "duychien22gmail.com", "password": "Nguyenduychien1.", "status_code": 400}, ' \
+         '{"username": "nguyenduyc/", "email": "duychien22@gmail.com", "password": "Nguyenduychien1.", "status_code": 400}, ' \
+         '{"username": "123456789", "email": "@gmail.com", "password": "Nguyenduychien1.", "status_code": 400}, ' \
+         '{"username": "444444444", "email": "duychien22@.", "password": "Nguyenduychien1.", "status_code": 400}, ' \
+         '{"username": "", "email": "duychien22@gmail.com", "password": "Nguyenduychien1.", "status_code": 400}, ' \
+         '{"username": "", "email": "", "password": "", "status_code": 400},' \
+         '{"username": "nguyenduychien", "email": "duychien226@gmail.com", "password": "Nguyenduychien1.", "status_code": 200}]'
 
 def create_mock_user():
     global email
@@ -40,7 +41,7 @@ def create_mock_user():
     )
     return  user or None
 
-class UserApiTestCase(APITestCase):
+class SignUpApiTestCase(APITestCase):
     def url(self):
         return 'http://localhost/api/auth/register/'
 
@@ -65,6 +66,7 @@ class UserApiTestCase(APITestCase):
     def test_invalid_data(self):
         global data_test_register
         array_data = json.loads(data_test_register)
+        results = []
         for valid_data in array_data:
             data = {
                 'username': valid_data["username"],
@@ -72,8 +74,18 @@ class UserApiTestCase(APITestCase):
                 'password': valid_data["password"],
             }
             res = self.send_request(data=data)
-            self.assertEqual(valid_data["status_code"], res.status_code)
-
+            results.append(valid_data["status_code"] == res.status_code)
+        i = 1
+        flag = True
+        for result in results:
+            if result == False:
+                print("data_test_register error index: " + str(i))
+                flag = False
+            i += 1
+        if flag:
+            self.assertEqual(True, True)
+        else:
+            self.assertEqual(True, False)
 
 class LoginApiTestCase(APITestCase):
     def url(self):
@@ -96,7 +108,6 @@ class LoginApiTestCase(APITestCase):
             m.User_Token.user_id == user_test.id
         ).first()
         self.assertEqual(check_exist_user_token.id, user_test.id)
-
 
 class ResetPasswordApiTestCase(APITestCase):
     def url(self):
@@ -151,7 +162,6 @@ class LogoutApiTestCase(APITestCase):
         self.send_request(headers=headers)
         find_user_token_test = r.usertoken.find_usertoken_by_tokenstring(user_token.token)
         self.assertEqual(find_user_token_test, None)
-
 
 class VerifyApiTestCase(APITestCase):
 

@@ -19,7 +19,9 @@ def check_info_form_resetpassword_and_res(username, email, **kwargs):
             content_mail = "Your Password: " + newpassword
             check_password = helpers.send_mail("Reset Password", content_mail, email)
             if check_password:
-                return { 'message' : 'Reset password success. You can check mail: ' + email }
+                return {
+                            'message': 'Reset password success. You can check mail: ' + email,
+                        }
             else:
                 raise exceptions.ForbiddenException(message="Send mail error")
     else:

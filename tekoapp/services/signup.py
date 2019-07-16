@@ -72,5 +72,7 @@ def verify(token_string):
             if result is None:
                 raise exceptions.BadRequestException("database error")
             else:
-                return { 'message' : 'success' }
+                return {
+                    'message': 'success',
+                }
     raise exceptions.NotFoundException(message="not found user")

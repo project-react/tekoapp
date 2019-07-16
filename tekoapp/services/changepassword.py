@@ -18,7 +18,9 @@ def check_info_and_res(token="", password="" ,newpassword="", **kwarg):
         print(password)
         if (user.check_password(password)):
             if repositories.changepassword.update_password(newpassword, user):
-                return { "message": "Change password success" }
+                return {
+                    "message": "Change password success",
+                }
             else:
                 raise exceptions.UnAuthorizedException(message="new password equal password")
         else:

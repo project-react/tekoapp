@@ -24,8 +24,8 @@ def check_info_from_login_request(username, password, **kwargs):
                 else:
                     timestr =  datetime.timestamp(user_token.expired_time)
                     return {
-                        'token' : user_token.token,
-                        'expired_time' : timestr, 
+                        'token': user_token.token,
+                        'expired_time': timestr,
                     }
             else:
                 raise exceptions.BadRequestException("Password invalid") 
