@@ -24,6 +24,7 @@ class User_Token(db.Model):
             "exp" : datetime.timestamp(self.expired_time)
         }
         token_string = jwt.encode(token_data, config.FLASK_APP_SECRET_KEY)
+        token_string = str(token_string)[2:-1]
         self.token = token_string
 
 class TokenSchema:

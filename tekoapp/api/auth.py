@@ -57,11 +57,11 @@ parser_maintain.add_argument(
 @ns.route('/register/')
 class Register(Resource):
     @ns.expect(_signup_request_req, validate=True)
-    @ns.marshal_with(_signup_request_res)
+    # @ns.marshal_with(_signup_request_res)
     def post(self):
         data = request.json or request.args
-        user = services.signup.create_user_to_signup_request(**data)
-        return user
+        # user = services.signup.create_user_to_signup_request(**data)
+        return services.signup.create_user_to_signup_request(**data)
 
 @ns.route('/register/verify/<string:token>')
 class Verify(Resource):
@@ -89,6 +89,7 @@ class Changepassword(Resource):
     @ns.expect(_changepassword_req, validate=True)
     def post(self):
         data = request.json or request.args
+        print("changePassword valid!!!!")
         return services.changepassword.check_info_and_res(**data)
 
 @ns.route('/resetPassword/')

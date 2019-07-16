@@ -37,7 +37,9 @@ def create_user_to_signup_request(username, email, password, **kwargs):
                                                                 user.user_token_confirm)
         check_send_mail = helpers.send_mail("Information Veriry Account.", content_mail, email, "verify")
         if (check_send_mail):
-            return user
+            return {
+                "message": "success",
+            }
         else:
             exceptions.ForbiddenException(message="Not found email!!!")
     else:
