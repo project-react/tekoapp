@@ -6,31 +6,26 @@ from datetime import datetime
 from tekoapp import models, repositories, helpers
 from tekoapp.extensions import exceptions
 
+@helpers.validator_before_handling
 def check_info_from_login_request(username, password, **kwargs):
-    if(
-        username and helpers.Username(username).is_valid()
-        and
-        password and helpers.Password(password).is_valid()
-    ):
-        user = repositories.user.find_user_by_username(username)
-        if user is None:
-            raise exceptions.UnAuthorizedException(message="Not found user")
-        else:
-            if(user.check_password(password)):
-                # function add token
-                user_token = repositories.usertoken.create_token_by_user(user)
-                if user_token is None:
-                    raise exceptions.UnAuthorizedException(message="Don't insert token")
-                else:
-                    timestr =  datetime.timestamp(user_token.expired_time)
-                    return {
-                        'token': user_token.token,
-                        'expired_time': timestr,
-                    }
-            else:
-                raise exceptions.BadRequestException("Password invalid") 
+    user = repositories.user.find_user_by_username(username)
+    if user is None:
+        raise exceptions.UnAuthorizedException(message="Not found user")
     else:
-        raise exceptions.BadRequestException("Invalid data!")
+        if(user.check_password(password)):
+            # function add token
+            user_token = repositories.usertoken.create_token_by_user(user)
+            if user_token is None:
+                raise exceptions.UnAuthorizedException(message="Don't insert token")
+            else:
+                timestr =  datetime.timestamp(user_token.expired_time)
+                return {
+                    'token': user_token.token,
+                    'expired_time': timestr,
+                }
+        else:
+            raise exceptions.BadRequestException("Password invalid") 
+
 
 def check_maintain_login(tokenstring=""):
     try:

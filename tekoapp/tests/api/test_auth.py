@@ -24,6 +24,8 @@ data_test_register = \
          '{"username": "", "email": "", "password": "", "status_code": 400},' \
          '{"username": "nguyenduychien", "email": "duychien226@gmail.com", "password": "Nguyenduychien1.", "status_code": 200}]'
 
+
+
 def create_mock_user():
     global email
     mock_data = {

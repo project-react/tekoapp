@@ -6,44 +6,35 @@ from datetime import datetime
 from tekoapp import models, repositories, helpers
 from tekoapp.extensions import exceptions
 
-
+@helpers.validator_before_handling
 def create_user_to_signup_request(username, email, password, **kwargs):
-    if (
-        username and helpers.Username(username).is_valid()
-        and
-        email and helpers.Email(email).is_valid()
-        and
-        password and helpers.Password(password).is_valid()
-    ):
-        existed_user = repositories.user.find_one_by_email_or_username_in_user(
-            email, username)
-        existed_user_not_verify = repositories.signup.find_one_by_email_or_username_in_signup_request(
-            email, username)
-        if existed_user or existed_user_not_verify:
-            raise exceptions.BadRequestException(
-                "User with username {username} "
-                "or email {email} already existed!".format(
-                    username=username,
-                    email=email
-                )
+    existed_user = repositories.user.find_one_by_email_or_username_in_user(
+        email, username)
+    existed_user_not_verify = repositories.signup.find_one_by_email_or_username_in_signup_request(
+        email, username)
+    if existed_user or existed_user_not_verify:
+        raise exceptions.BadRequestException(
+            "User with username {username} "
+            "or email {email} already existed!".format(
+                username=username,
+                email=email
             )
-        user = repositories.signup.save_user_to_signup_request(
-            username=username,
-            email=email,
-            password=password,
-            **kwargs
         )
-        content_mail = '<a href="{0}/{1}/{2}">Click here</b>'.format(config.BASE_URL, 'api/auth/register/verify',
-                                                                user.user_token_confirm)
-        check_send_mail = helpers.send_mail("Information Veriry Account.", content_mail, email, "verify")
-        if (check_send_mail):
-            return {
-                "message": "success",
-            }
-        else:
-            exceptions.ForbiddenException(message="Not found email!!!")
+    user = repositories.signup.save_user_to_signup_request(
+        username=username,
+        email=email,
+        password=password,
+        **kwargs
+    )
+    content_mail = '<a href="{0}/{1}/{2}">Click here</b>'.format(config.BASE_URL, 'api/auth/register/verify',
+                                                            user.user_token_confirm)
+    check_send_mail = helpers.send_mail("Information Veriry Account.", content_mail, email, "verify")
+    if (check_send_mail):
+        return {
+            "message": "success",
+        }
     else:
-        raise exceptions.BadRequestException("Data invalid!")
+        exceptions.ForbiddenException(message="Not found email!!!")
 
 
 def verify(token_string):

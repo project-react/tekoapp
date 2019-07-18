@@ -4,6 +4,7 @@ import config
 from tekoapp.extensions import exceptions
 from tekoapp import repositories, helpers
 
+@helpers.validator_before_handling
 def check_info_and_res(token="", password="" ,newpassword="", **kwarg):
     try:
         token_data = jwt.decode(token, config.FLASK_APP_SECRET_KEY)

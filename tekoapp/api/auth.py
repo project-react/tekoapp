@@ -89,7 +89,6 @@ class Changepassword(Resource):
     @ns.expect(_changepassword_req, validate=True)
     def post(self):
         data = request.json or request.args
-        print("changePassword valid!!!!")
         return services.changepassword.check_info_and_res(**data)
 
 @ns.route('/resetPassword/')

@@ -1,4 +1,5 @@
 import re 
+from tekoapp.extensions import exceptions
 
 class Username:
     value = ''
@@ -57,3 +58,22 @@ class Password:
 
     def is_valid(self):
         return self.test_length() and self.test_format()
+
+class NewPassword(Password):
+    pass
+
+
+
+def validator_before_handling(func):
+    def inner(*args, **kwargs):
+        for k, v in kwargs.items():
+            if (k == "username" and Username(v).is_valid() == False):
+                raise exceptions.BadRequestException("Data invalid!")
+            elif (k == "email" and Email(v).is_valid() == False):
+                raise exceptions.BadRequestException("Data invalid!")
+            elif (k == "password" and Password(v).is_valid() == False):
+                raise exceptions.BadRequestException("Data invalid!")
+            elif (k == "newpassword" and NewPassword(v).is_valid() == False):
+                raise exceptions.BadRequestException("Data invalid!")
+        return func(*args, **kwargs)
+    return inner
