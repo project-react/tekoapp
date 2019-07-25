@@ -2,7 +2,7 @@ from flask_restplus import Namespace, Resource, fields
 from flask import request, jsonify
 from tekoapp import models, services
 
-ns = Namespace('auth', description='Sign in operators')
+ns = Namespace('users', description='function for users')
 _signup_request_req = ns.model(
     'signup_request_req', models.SignupSchema.signup_request_req
     )
@@ -61,13 +61,13 @@ class Register(Resource):
     def post(self):
         data = request.json or request.args
         # user = services.signup.create_user_to_signup_request(**data)
-        return services.signup.create_user_to_signup_request(**data)
+        return services.users.signup.create_user_to_signup_request(**data)
 
 @ns.route('/register/verify/<string:token>')
 class Verify(Resource):
     @ns.marshal_with(_verify_res)
     def get(self, token):
-        message = services.signup.verify(token)
+        message = services.users.signup.verify(token)
         return message
 
 @ns.route('/login/')
@@ -75,28 +75,28 @@ class Login(Resource):
     @ns.expect(_login_req, validate=True)
     def post(self):
         data = request.json or request.args
-        return services.login.check_info_from_login_request(**data)
+        return services.users.login.check_info_from_login_request(**data)
 
 @ns.route('/logout/')
 class Logout(Resource):   
     @ns.expect(parser_logout)
     def get(self):
         token = request.headers.get('Authorization')
-        return services.logout.check_token_from_logout_request(token)
+        return services.users.logout.check_token_from_logout_request(token)
 
 @ns.route('/changePassword/')
 class Changepassword(Resource):
     @ns.expect(_changepassword_req, validate=True)
     def post(self):
         data = request.json or request.args
-        return services.changepassword.check_info_and_res(**data)
+        return services.users.changepassword.check_info_and_res(**data)
 
 @ns.route('/resetPassword/')
 class Resetpassword(Resource):
     @ns.expect(_resetpass_req, validate=True)
     def post(self):
         data = request.json or request.args
-        user = services.resetpassword.check_info_form_resetpassword_and_res(**data)
+        user = services.users.resetpassword.check_info_form_resetpassword_and_res(**data)
         return user
 
 @ns.route('/maintainLogin/')
@@ -104,4 +104,4 @@ class MaintainLogin(Resource):
     @ns.expect(parser_maintain)
     def get(self):
         token = request.headers.get('Authorization')
-        return services.login.check_maintain_login(token)
+        return services.users.login.check_maintain_login(token)

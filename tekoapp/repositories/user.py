@@ -41,3 +41,7 @@ def find_one_by_email_or_username_in_user(email="", username=""):
 def delete_one_by_email_or_username_in_user(user):
     models.db.session.delete(user)
     models.db.session.commit()
+
+
+def get_list_user():
+    return models.User.query.all()

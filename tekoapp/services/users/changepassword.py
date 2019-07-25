@@ -16,7 +16,6 @@ def check_info_and_res(token="", password="" ,newpassword="", **kwarg):
     if user is None:
         raise exceptions.BadRequestException("User not exist!")
     else:
-        print(password)
         if (user.check_password(password)):
             if repositories.changepassword.update_password(newpassword, user):
                 return {

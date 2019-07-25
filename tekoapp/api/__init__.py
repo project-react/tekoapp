@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_restplus import Api
-from .auth import ns as auth_ns
+from .users import ns as users_ns
+from .admin import ns as admin_ns
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
@@ -9,7 +10,6 @@ api = Api(
     version='1.0',
     title='API',
     validate=False,
-    # doc='' # disable Swagger UI
 )
 
 def init_app(app, **kwargs):
@@ -18,5 +18,6 @@ def init_app(app, **kwargs):
     :param kwargs:
     :return:
     """
-    api.add_namespace(auth_ns)
+    api.add_namespace(users_ns)
+    api.add_namespace(admin_ns)
     app.register_blueprint(api_bp)

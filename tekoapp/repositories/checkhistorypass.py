@@ -25,13 +25,11 @@ def delete_old_password(userid):
     listhistorypass = models.History_Pass_Change.query \
         .filter(models.History_Pass_Change.user_id == userid).all()
     sizelisthistorypass = len(listhistorypass)
-    print(sizelisthistorypass)
     if (sizelisthistorypass > 5):
         listhistorypassdelete = models.History_Pass_Change.query\
         .filter(models.History_Pass_Change.user_id == userid)\
         .order_by(models.History_Pass_Change.created_at)\
         .limit(sizelisthistorypass - 5).all()
-        print(sizelisthistorypass - 5)
         for historypassdelete in listhistorypassdelete:
             delete_history_password_by_id(historypassdelete.id)
         return  True
