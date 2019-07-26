@@ -22,6 +22,7 @@ def check_info_from_login_request(username, password, **kwargs):
                 return {
                     'token': user_token.token,
                     'expired_time': timestr,
+                    'isAdmin': user.is_admin,
                 }
         else:
             raise exceptions.BadRequestException("Password invalid") 
