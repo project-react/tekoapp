@@ -19,3 +19,10 @@ class Getlistuser(Resource):
     def get(self):
         token = request.headers.get('Authorization')
         return services.admin.getlistuser.get_list_user(token)
+
+@ns.route('/isAdmin/')
+class VerifyAdmin(Resource):
+    @ns.expect(parser_getlistuser)
+    def get(self):
+        token = request.headers.get('Authorization')
+        return services.admin.verifyadmin.verify_is_admin_by_token(token)
