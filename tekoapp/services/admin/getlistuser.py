@@ -7,11 +7,12 @@ def get_list_user(token):
         print(listuser)
         responseListUser = []
         for user in listuser:
-            datetime = str(user.created_at)
+            datetime = str(user.updated_at)
             e = {
                 'username': user.username,
                 'email': user.email,
-                'created': datetime,
+                'updated_at': datetime,
+                'is_admin': user.is_admin
             }
             responseListUser.append(e)
         return responseListUser
