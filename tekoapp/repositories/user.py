@@ -1,7 +1,7 @@
 from sqlalchemy import or_, and_
 from datetime import datetime
 from tekoapp import models
-
+from tekoapp.extensions import exceptions
 
 def save_user_to_user(**kwargs):
     # user = models.Signup_Request(**kwargs)
@@ -50,6 +50,14 @@ def edit_username_email_is_admin_in_user(new_username, new_email, new_is_admin, 
     models.db.session.add(user)
     models.db.session.commit()
     return user
+
+def check_orther_user_had_username_email(userid, new_username, new_email):
+    list_orther_user = models.User.query\
+        .filter(models.User.id != userid).all()
+    for user in list_orther_user:
+        if (user.username == new_username or user.email == new_email):
+            return False
+    return True
 
 
 def get_list_user():
