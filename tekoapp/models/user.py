@@ -1,7 +1,7 @@
 import enum
 import logging
 from flask_restplus import fields
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 from tekoapp.models import db, bcrypt

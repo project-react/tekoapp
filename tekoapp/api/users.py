@@ -60,6 +60,7 @@ class Register(Resource):
     # @ns.marshal_with(_signup_request_res)
     def post(self):
         data = request.json or request.args
+
         # user = services.signup.create_user_to_signup_request(**data)
         return services.users.signup.create_user_to_signup_request(**data)
 

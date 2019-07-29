@@ -1,5 +1,5 @@
 from sqlalchemy import or_, and_
-
+from datetime import datetime
 from tekoapp import models
 
 
@@ -41,6 +41,15 @@ def find_one_by_email_or_username_in_user(email="", username=""):
 def delete_one_by_email_or_username_in_user(user):
     models.db.session.delete(user)
     models.db.session.commit()
+
+def edit_username_email_is_admin_in_user(new_username, new_email, new_is_admin, user):
+    user.username = new_username
+    user.email = new_email
+    user.is_admin = new_is_admin
+    user.updated_at = datetime.now()
+    models.db.session.add(user)
+    models.db.session.commit()
+    return user
 
 
 def get_list_user():
