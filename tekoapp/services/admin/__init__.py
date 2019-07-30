@@ -1,1 +1,1 @@
-from . import getlistuser, verifyadmin, edituser
+from . import getlistuser, verifyadmin, edituser, deleteuser

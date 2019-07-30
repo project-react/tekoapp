@@ -12,7 +12,7 @@ class User_Token(db.Model):
     
     __tablename__ = 'user_token'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
     token = db.Column(db.Text(), nullable=False)
     expired_time = db.Column(db.TIMESTAMP, nullable=False)
     created_at = db.Column(db.TIMESTAMP, default=datetime.now())
