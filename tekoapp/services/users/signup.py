@@ -55,14 +55,15 @@ def verify(token_string):
         expired = datetime.timestamp(user.expired_time)
         if expired - now >= 0:
             #function add info to user and delete Signup_Request
-            result = repositories.signup.save_user_to_user(
+            user_in_tb_user = repositories.signup.save_user_to_user(
                 username=user.username,
                 email=user.email,
                 password=user.password_hash
             )
-            if result is None:
+            if user_in_tb_user is None:
                 raise exceptions.BadRequestException("database error")
             else:
+                repositories.checkhistorypass.save_history_pass(user_in_tb_user.id, user_in_tb_user.password_hash, True)
                 return {
                     'message': 'success',
                 }

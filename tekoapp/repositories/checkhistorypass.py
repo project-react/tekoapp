@@ -2,10 +2,11 @@ from tekoapp import models
 from sqlalchemy import desc
 from tekoapp.extensions import exceptions
 
-def save_history_pass(userid, password):
+def save_history_pass(userid, password, is_real_pass):
     data = {
         'user_id': userid,
-        'password': password
+        'password': password,
+        'is_real_pass': is_real_pass
     }
     historypass = models.History_Pass_Change(**data)
     models.db.session.add(historypass)
@@ -46,5 +47,5 @@ def check_history_pass_when_change(userid, newpassword):
 
     for historypass in listhistorypass:
         if historypass.check_password(newpassword):
-            raise exceptions.UnAuthorizedException(message="You have retyped the same password 5 times")
+            return  False
     return True
