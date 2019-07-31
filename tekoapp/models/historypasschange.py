@@ -21,7 +21,7 @@ class History_Pass_Change(db.Model):
 
     __tablename__ = 'history_pass_changes'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
     created_at = db.Column(db.TIMESTAMP, default=datetime.now())
     pass_change_history = db.Column(db.Text(), nullable=False)
 

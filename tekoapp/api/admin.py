@@ -31,6 +31,15 @@ _deleteuser_req = ns.model(
     }
 )
 
+_createuser_req = ns.model(
+    'createuser_req',
+    {
+        'username': fields.String(required=True, description='username'),
+        'email': fields.String(required=True, description='email'),
+        'is_admin': fields.Boolean(required=True, description='is admin', default=False)
+    }
+)
+
 @ns.route('/getlistuser/')
 class Getlistuser(Resource):
     @ns.expect(parser_verify)
@@ -62,3 +71,11 @@ class DeleteUser(Resource):
         data = request.json or request.args
         return services.admin.deleteuser.delete_user_by_account_admin(token, **data)
 
+@ns.route('/createuser/')
+class CreateUser(Resource):
+    @ns.expect(parser_verify, _createuser_req)
+    def post(self):
+        token = request.headers.get('Authorization')
+        services.admin.verifyadmin.verify_is_admin_by_token(token)
+        data = request.json or request.args
+        return services.admin.createuser.create_user_by_account_admin(**data)
