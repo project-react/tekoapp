@@ -40,6 +40,15 @@ _createuser_req = ns.model(
     }
 )
 
+_lookaccount_req = ns.model(
+    'lookaccount_req',
+    {
+        'username': fields.String(required=True, description='username'),
+        'email': fields.String(required=True, description='email'),
+        'look_time': fields.Integer(required=True, description='look_time')
+    }
+)
+
 @ns.route('/getlistuser/')
 class Getlistuser(Resource):
     @ns.expect(parser_verify)
@@ -79,3 +88,14 @@ class CreateUser(Resource):
         services.admin.verifyadmin.verify_is_admin_by_token(token)
         data = request.json or request.args
         return services.admin.createuser.create_user_by_account_admin(**data)
+
+@ns.route('/lookaccount/')
+class LookAccount(Resource):
+    @ns.expect(parser_verify, _lookaccount_req)
+    def put(self):
+        token = request.headers.get('Authorization')
+        data = request.json or request.args
+        return services.admin.lookaccount.look_account_by_admin(
+            token=token,
+            **data
+        )

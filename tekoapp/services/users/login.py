@@ -3,7 +3,7 @@ import jwt
 import config
 
 from datetime import datetime
-from tekoapp import models, repositories, helpers
+from tekoapp import repositories, helpers
 from tekoapp.extensions import exceptions
 
 @helpers.validator_before_handling
@@ -14,16 +14,19 @@ def check_info_from_login_request(username, password, **kwargs):
     else:
         if(user.check_password(password)):
             # function add token
-            user_token = repositories.usertoken.create_token_by_user(user)
-            if user_token is None:
-                raise exceptions.UnAuthorizedException(message="Don't insert token")
+            if helpers.verify_look_account_by_user(user):
+                user_token = repositories.usertoken.create_token_by_user(user)
+                if user_token is None:
+                    raise exceptions.UnAuthorizedException(message="Don't insert token")
+                else:
+                    timestr =  datetime.timestamp(user_token.expired_time)
+                    return {
+                        'token': user_token.token,
+                        'expired_time': timestr,
+                        'isAdmin': user.is_admin,
+                    }
             else:
-                timestr =  datetime.timestamp(user_token.expired_time)
-                return {
-                    'token': user_token.token,
-                    'expired_time': timestr,
-                    'isAdmin': user.is_admin,
-                }
+                raise exceptions.UnAuthorizedException(message="Account locked")
         else:
             raise exceptions.BadRequestException("Password invalid") 
 

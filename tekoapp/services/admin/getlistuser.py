@@ -12,7 +12,8 @@ def get_list_user(token):
                 'username': user.username,
                 'email': user.email,
                 'updated_at': datetime,
-                'is_admin': user.is_admin
+                'is_admin': user.is_admin,
+                'is_active': user.is_active,
             }
             responseListUser.append(e)
         return responseListUser

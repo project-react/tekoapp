@@ -3,7 +3,7 @@ import jwt
 import config
 
 from datetime import datetime
-from tekoapp import models, repositories, helpers
+from tekoapp import repositories, helpers
 from tekoapp.extensions import exceptions
 
 @helpers.validator_before_handling

@@ -1,7 +1,7 @@
 from sqlalchemy import or_, and_
 from datetime import datetime
 from tekoapp import models
-from tekoapp.extensions import exceptions
+
 from . import resetpassword
 
 def find_user_by_username(username=""):
@@ -74,7 +74,18 @@ def add_user_by_username_and_email(username, email, is_admin):
         }
     return None
 
+def edit_look_time_in_user(user, look_time):
+    user.look_time = look_time
+    user.look_create_at = datetime.now()
+    models.db.session.add(user)
+    models.db.session.commit()
+    return  user or None
 
+def edit_is_active_in_user(user, is_active):
+    user.is_active = is_active
+    models.db.session.add(user)
+    models.db.session.commit()
+    return user or None
 
 def get_list_user():
     return models.User.query.all()

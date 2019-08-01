@@ -16,7 +16,7 @@ def create_user_by_account_admin(username, email, is_admin, **kwargs):
         or
         user_check_exist_in_signup
     ):
-        raise exceptions.BadRequestException(message='User already exist')
+        raise exceptions.BadRequestException(message='Username or email already exist')
     else:
         new_user = repositories.user.add_user_by_username_and_email(
             username=username,

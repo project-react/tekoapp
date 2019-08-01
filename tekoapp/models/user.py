@@ -1,7 +1,7 @@
 import enum
 import logging
 from flask_restplus import fields
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 from tekoapp.models import db, bcrypt
@@ -10,6 +10,10 @@ class User(db.Model):
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
+        print('-------------------------')
+        self.set_is_active()
+        print (self.is_active)
+        print('-------------------------')
 
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -21,6 +25,8 @@ class User(db.Model):
     is_admin = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.TIMESTAMP, default = datetime.now())
     updated_at = db.Column(db.TIMESTAMP, default = datetime.now())
+    look_time = db.Column(db.Integer, default = 0)
+    look_create_at = db.Column(db.TIMESTAMP, default = datetime.now())
 
     @property
     def password(self):
@@ -33,6 +39,10 @@ class User(db.Model):
 
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
+
+    def set_is_active(self):
+        self.is_active = datetime.timestamp(datetime.now()) - datetime.timestamp(self.look_create_at + timedelta(self.look_time)) >= 0
+        print (self.is_active)
 
     def get_id(self):
         return self.id
