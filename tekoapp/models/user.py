@@ -10,10 +10,6 @@ class User(db.Model):
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
-        print('-------------------------')
-        self.set_is_active()
-        print (self.is_active)
-        print('-------------------------')
 
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -39,10 +35,6 @@ class User(db.Model):
 
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
-
-    def set_is_active(self):
-        self.is_active = datetime.timestamp(datetime.now()) - datetime.timestamp(self.look_create_at + timedelta(self.look_time)) >= 0
-        print (self.is_active)
 
     def get_id(self):
         return self.id

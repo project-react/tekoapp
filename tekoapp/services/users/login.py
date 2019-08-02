@@ -1,10 +1,10 @@
-import re
 import jwt
 import config
 
 from datetime import datetime
 from tekoapp import repositories, helpers
 from tekoapp.extensions import exceptions
+
 
 @helpers.validator_before_handling
 def check_info_from_login_request(username, password, **kwargs):

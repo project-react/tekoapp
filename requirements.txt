@@ -18,3 +18,6 @@ faker==1.0.4
 sentry-sdk[flask]==0.7.7
 Flask-Cors==3.0.8
 PyJWT==1.4.0
+pyOpenSSL==19.0.0
+google-oauth==1.0.1
+google-auth==1.6.3
