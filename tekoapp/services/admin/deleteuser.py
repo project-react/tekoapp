@@ -29,3 +29,5 @@ def delete_user_by_account_admin(token, username, email, **kwargs):
     except jwt.ExpiredSignature:
         repositories.usertoken.delete_token_by_tokenstring(token)
         raise exceptions.UnAuthorizedException('expired token, auto logout')
+    except jwt.exceptions.InvalidTokenError:
+        raise exceptions.BadRequestException('Invalid Token')

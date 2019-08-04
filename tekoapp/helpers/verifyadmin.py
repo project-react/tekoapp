@@ -14,4 +14,6 @@ def check_token_and_verify_admin(func):
         except jwt.ExpiredSignature:
             repositories.usertoken.delete_token_by_tokenstring(token)
             raise exceptions.UnAuthorizedException('expired token, auto logout')
+        except jwt.exceptions.InvalidTokenError:
+            raise exceptions.BadRequestException('Invalid Token')
     return inner

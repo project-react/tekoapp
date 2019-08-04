@@ -1,4 +1,4 @@
-flask==1.0.2
+flask==1.1.1
 python-dotenv~=0.10.1
 flask-restplus==0.12.1
 pytest-flask==0.10.0
@@ -19,5 +19,8 @@ sentry-sdk[flask]==0.7.7
 Flask-Cors==3.0.8
 PyJWT==1.4.0
 pyOpenSSL==19.0.0
-google-oauth==1.0.1
-google-auth==1.6.3
+
+authlib==0.11
+google-api-python-client
+google-auth
+virtualenv

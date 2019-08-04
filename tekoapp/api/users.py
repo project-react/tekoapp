@@ -36,8 +36,24 @@ _resetpass_req = ns.model(
     }
 )
 
+_logingoogle_req = ns.model(
+    'logingoogle_req',
+    {
+        'email': fields.String(required=True, description='user email')
+    }
+)
+
 parser_logout = ns.parser()
 parser_logout.add_argument(
+    'Authorization',
+    type=str,
+    help='Bearer Access Token',
+    location='headers',
+    required=True
+)
+
+parser_token = ns.parser()
+parser_token.add_argument(
     'Authorization',
     type=str,
     help='Bearer Access Token',
@@ -77,6 +93,14 @@ class Login(Resource):
     def post(self):
         data = request.json or request.args
         return services.users.login.check_info_from_login_request(**data)
+
+@ns.route('/google/login')
+class Login(Resource):
+    @ns.expect(parser_token, _logingoogle_req, validate=True)
+    def post(self):
+        token = request.headers.get('Authorization')
+        data = request.json or request.args
+        return services.google.login.make_response(token=token, email=data['email'])
 
 @ns.route('/logout/')
 class Logout(Resource):   

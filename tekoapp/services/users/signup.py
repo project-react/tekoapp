@@ -46,6 +46,8 @@ def verify(token_string):
             raise exceptions.UnAuthorizedException('expired token, delete account')
         else:
             raise exceptions.BadRequestException('database error')
+    except jwt.exceptions.InvalidTokenError:
+        raise exceptions.BadRequestException('Invalid Token')
 
     username = token_data["username"]
     user = repositories.signup.find_one_by_email_or_username_in_signup_request(email="", username=username)

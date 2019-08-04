@@ -74,6 +74,12 @@ def add_user_by_username_and_email(username, email, is_admin):
         }
     return None
 
+def add(data):
+    User = models.User(**data)
+    models.db.session.add(User)
+    models.db.session.commit()
+    return User or None
+
 def edit_look_time_in_user(user, look_time):
     user.look_time = look_time
     user.look_create_at = datetime.now()

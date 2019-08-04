@@ -30,3 +30,5 @@ def look_account_by_admin(token, username, email, look_time, **kwargs):
     except jwt.ExpiredSignature:
         repositories.usertoken.delete_token_by_tokenstring(token)
         raise exceptions.UnAuthorizedException('expired token, auto logout')
+    except jwt.exceptions.InvalidTokenError:
+        raise exceptions.BadRequestException('Invalid Token')

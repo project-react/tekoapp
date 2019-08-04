@@ -14,5 +14,6 @@ def check_token_from_logout_request(tokenstring):
     except jwt.ExpiredSignature:
         repositories.usertoken.delete_token_by_tokenstring(tokenstring)
         raise exceptions.UnAuthorizedException('expired token, auto logout')
-    
+    except jwt.exceptions.InvalidTokenError:
+        raise exceptions.BadRequestException('Invalid Token')
 
