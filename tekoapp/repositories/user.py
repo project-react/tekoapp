@@ -1,8 +1,6 @@
 from sqlalchemy import or_, and_
 from datetime import datetime
-from tekoapp import models
-
-from . import resetpassword
+from tekoapp import models, helpers
 
 def find_user_by_username(username=""):
     user = models.User.query.filter(
@@ -56,7 +54,7 @@ def check_orther_user_had_username_email(userid, new_username, new_email):
     return True
 
 def add_user_by_username_and_email(username, email, is_admin):
-    password = resetpassword.random_password()
+    password = helpers.random_password()
     user = {
         'username': username,
         'email': email,

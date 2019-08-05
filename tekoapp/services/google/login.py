@@ -51,8 +51,13 @@ def make_response(token, email):
         if (
             existed_user
         ):
+            user_token = repositories.usertoken.create_token_by_user(existed_user)
+            timestr = datetime.timestamp(user_token.expired_time)
             return {
-                'msg': 'login sussess'
+                'token': user_token.token,
+                'expired_time': timestr,
+                'username': existed_user.username,
+                'isAdmin': existed_user.is_admin,
             }
         elif existed_user_not_verify:
             raise exceptions.BadRequestException(
